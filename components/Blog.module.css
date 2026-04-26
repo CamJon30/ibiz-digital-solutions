@@ -1,0 +1,5 @@
+.section { padding: var(--section-padding); }
+.inner { max-width: var(--max-width); margin: 0 auto; }
+.header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+.comingSoon { text-align: center; padding: 72px 40px; background: var(--surface); border: 1px dashed rgba(255,255,255,0.1); border-radius: 16px; color: var(--text3); font-size: 15px; line-height: 1.7; font-weight: 300; }
+.comingSoon strong { display: block; font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text2); margin-bottom: 12px; }

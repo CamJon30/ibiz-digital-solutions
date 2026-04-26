@@ -1,0 +1,30 @@
+.section { padding: var(--section-padding); background: var(--bg2); }
+.inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; position: relative; overflow: hidden; }
+.card::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(0,102,255,0.08) 0%, transparent 70%); }
+.initials { font-family: var(--font-display); font-size: 52px; font-weight: 800; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--accent2), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4px; }
+.name { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+.titleLabel { font-size: 12px; color: var(--text3); margin-bottom: 24px; }
+.divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+.roadmapLabel { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+.certList { display: flex; flex-direction: column; gap: 10px; }
+.cert { display: flex; align-items: center; gap: 10px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.blue { background: var(--accent); }
+.gold { background: var(--gold); }
+.purple { background: var(--accent3); }
+.certInfo { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 8px; }
+.certLabel { font-size: 12px; color: var(--text2); flex: 1; }
+.certStatus { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 100px; flex-shrink: 0; }
+.done { background: rgba(52,199,89,0.1); color: #34c759; border: 1px solid rgba(52,199,89,0.2); }
+.active { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+.upcoming { background: rgba(255,255,255,0.04); color: var(--text3); border: 1px solid var(--border); }
+.text { font-size: 15px; color: var(--text2); line-height: 1.8; font-weight: 300; margin-bottom: 18px; }
+.text strong { color: var(--text); font-weight: 500; }
+.credBlock { margin: 20px 0; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.credBlockLabel { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+.credGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.credItem { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text2); font-weight: 300; line-height: 1.5; }
+.credIcon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.highlight { background: rgba(0,102,255,0.06); border-left: 3px solid var(--accent2); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--text); font-style: italic; font-weight: 300; margin-top: 20px; }
+@media (max-width: 900px) { .inner { grid-template-columns: 1fr; gap: 48px; } .credGrid { grid-template-columns: 1fr; } }

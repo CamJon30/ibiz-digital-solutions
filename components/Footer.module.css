@@ -1,0 +1,10 @@
+.footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; background: var(--bg); }
+.left { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logoMark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: #fff; }
+.logoText { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--text2); }
+.copy { font-size: 13px; color: var(--text3); }
+.links { display: flex; gap: 24px; flex-wrap: wrap; }
+.links a { font-size: 13px; color: var(--text3); text-decoration: none; transition: color 0.2s; }
+.links a:hover { color: var(--text2); }
+@media (max-width: 900px) { .footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; } }
