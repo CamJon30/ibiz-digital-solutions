@@ -1,7 +1,7 @@
 import styles from './About.module.css'
 
 const certs = [
-  { color: 'blue',   status: 'Completed ✓',      label: 'Google Cloud GAIL Certification' },
+  { color: 'blue',   status: 'In Progress',    label: 'Google Cloud GAIL Certification' },
   { color: 'blue',   status: 'In Progress',        label: 'CompTIA Security+ (SY0-701)' },
   { color: 'blue',   status: 'Coming Q3 2026',     label: 'CompTIA SecAI+' },
   { color: 'gold',   status: 'Coming Q3 2026',     label: 'CMMC Registered Practitioner' },
