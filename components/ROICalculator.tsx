@@ -207,9 +207,9 @@ export default function ROICalculator() {
                   className={styles.slider}
                   value={inputs.timeSavings}
                   onChange={e => handleChange('timeSavings', parseInt(e.target.value))}
-                  min="5" max="95" step="5"
+                  min="0" max="100" step="25"
                 />
-                <div className={styles.sliderLabels}><span>5%</span><span>50%</span><span>95%</span></div>
+                <div className={styles.sliderLabels}><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
               </div>
             </div>
           </div>
