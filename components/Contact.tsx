@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './Contact.module.css'
 
 const details = [
@@ -11,25 +11,35 @@ const details = [
 export default function Contact() {
   const [form, setForm] = useState({ name: '', organization: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [roiPrefilled, setRoiPrefilled] = useState(false)
+
+  useEffect(() => {
+    const handleROIResults = (e: CustomEvent) => {
+      setForm(prev => ({ ...prev, message: e.detail }))
+      setRoiPrefilled(true)
+    }
+    window.addEventListener('roi-results', handleROIResults as EventListener)
+    return () => window.removeEventListener('roi-results', handleROIResults as EventListener)
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+    if (e.target.name === 'message') setRoiPrefilled(false)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-
       if (res.ok) {
         setStatus('success')
         setForm({ name: '', organization: '', email: '', message: '' })
+        setRoiPrefilled(false)
       } else {
         setStatus('error')
       }
@@ -77,60 +87,41 @@ export default function Contact() {
             <form onSubmit={handleSubmit}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Full Name *</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className={styles.input}
-                  placeholder="Jane Smith"
-                  required
-                />
+                <input type="text" name="name" value={form.name} onChange={handleChange} className={styles.input} placeholder="Jane Smith" required />
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Organization</label>
-                <input
-                  type="text"
-                  name="organization"
-                  value={form.organization}
-                  onChange={handleChange}
-                  className={styles.input}
-                  placeholder="Your company or agency"
-                />
+                <input type="text" name="organization" value={form.organization} onChange={handleChange} className={styles.input} placeholder="Your company or agency" />
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Email Address *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  className={styles.input}
-                  placeholder="jane@organization.com"
-                  required
-                />
+                <input type="email" name="email" value={form.email} onChange={handleChange} className={styles.input} placeholder="jane@organization.com" required />
               </div>
               <div className={styles.formGroup}>
-                <label className={styles.label}>What are you working on? *</label>
+                <label className={styles.label}>
+                  {roiPrefilled ? (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      Your ROI Results
+                      <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.06em', padding: '2px 8px', borderRadius: '100px', background: 'rgba(0,212,255,0.1)', border: '1px solid rgba(0,212,255,0.2)', color: 'var(--accent)' }}>
+                        Pre-filled from calculator
+                      </span>
+                    </span>
+                  ) : 'What are you working on? *'}
+                </label>
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  className={`${styles.input} ${styles.textarea}`}
+                  className={`${styles.input} ${styles.textarea} ${roiPrefilled ? styles.prefilled : ''}`}
                   placeholder="Tell us about your challenge, project, or goal..."
                   required
+                  rows={roiPrefilled ? 8 : 4}
                 />
               </div>
               {status === 'error' && (
-                <div className={styles.errorBox}>
-                  Something went wrong. Please try again or email directly.
-                </div>
+                <div className={styles.errorBox}>Something went wrong. Please try again or email directly.</div>
               )}
-              <button
-                type="submit"
-                className={styles.submit}
-                disabled={status === 'loading'}
-              >
+              <button type="submit" className={styles.submit} disabled={status === 'loading'}>
                 {status === 'loading' ? 'Sending...' : 'Send Message →'}
               </button>
             </form>
