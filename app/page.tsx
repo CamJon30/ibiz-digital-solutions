@@ -4,6 +4,7 @@ import Trifecta from '@/components/Trifecta'
 import WhoWeServe from '@/components/WhoWeServe'
 import About from '@/components/About'
 import Process from '@/components/Process'
+import ROICalculator from '@/components/ROICalculator'
 import Capability from '@/components/Capability'
 import Blog from '@/components/Blog'
 import Contact from '@/components/Contact'
@@ -19,6 +20,7 @@ export default function Home() {
       <WhoWeServe />
       <About />
       <Process />
+      <ROICalculator />
       <Capability />
       <Blog />
       <Contact />
