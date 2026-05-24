@@ -10,13 +10,14 @@ const details = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', organization: '', email: '', message: '' })
+  const [roiData, setRoiData] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [roiPrefilled, setRoiPrefilled] = useState(false)
+  const [fromCalculator, setFromCalculator] = useState(false)
 
   useEffect(() => {
     const handleROIResults = (e: CustomEvent) => {
-      setForm(prev => ({ ...prev, message: e.detail }))
-      setRoiPrefilled(true)
+      setRoiData(e.detail)
+      setFromCalculator(true)
     }
     window.addEventListener('roi-results', handleROIResults as EventListener)
     return () => window.removeEventListener('roi-results', handleROIResults as EventListener)
@@ -24,7 +25,6 @@ export default function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    if (e.target.name === 'message') setRoiPrefilled(false)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,12 +34,13 @@ export default function Contact() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, roiData }),
       })
       if (res.ok) {
         setStatus('success')
         setForm({ name: '', organization: '', email: '', message: '' })
-        setRoiPrefilled(false)
+        setRoiData(null)
+        setFromCalculator(false)
       } else {
         setStatus('error')
       }
@@ -85,6 +86,12 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
+              {fromCalculator && (
+                <div className={styles.calculatorBadge}>
+                  <span className={styles.calculatorBadgeDot} />
+                  Your ROI results have been attached to this message
+                </div>
+              )}
               <div className={styles.formGroup}>
                 <label className={styles.label}>Full Name *</label>
                 <input type="text" name="name" value={form.name} onChange={handleChange} className={styles.input} placeholder="Jane Smith" required />
@@ -99,23 +106,16 @@ export default function Contact() {
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label}>
-                  {roiPrefilled ? (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      Your ROI Results
-                      <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.06em', padding: '2px 8px', borderRadius: '100px', background: 'rgba(0,212,255,0.1)', border: '1px solid rgba(0,212,255,0.2)', color: 'var(--accent)' }}>
-                        Pre-filled from calculator
-                      </span>
-                    </span>
-                  ) : 'What are you working on? *'}
+                  {fromCalculator ? 'Any additional notes?' : 'What are you working on? *'}
                 </label>
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  className={`${styles.input} ${styles.textarea} ${roiPrefilled ? styles.prefilled : ''}`}
-                  placeholder="Tell us about your challenge, project, or goal..."
-                  required
-                  rows={roiPrefilled ? 8 : 4}
+                  className={`${styles.input} ${styles.textarea}`}
+                  placeholder={fromCalculator ? 'Add any context about your specific use case, timeline, or questions...' : 'Tell us about your challenge, project, or goal...'}
+                  required={!fromCalculator}
+                  rows={4}
                 />
               </div>
               {status === 'error' && (
