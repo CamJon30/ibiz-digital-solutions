@@ -17,7 +17,7 @@ const emptyInputs: Inputs = {
   employees: '',
   buildCost: '',
   monthlyCost: '',
-  timeSavings: 50,
+  timeSavings: 0,
 }
 
 type Rating = 'green' | 'yellow' | 'red'
