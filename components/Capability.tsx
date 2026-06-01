@@ -8,7 +8,7 @@ const contractInfo = [
 ]
 const naics = ['541519','541512','541511','541611','518210','541990']
 const downloads = [
-  { icon: '📄', title: 'Technology & Consulting', sub: 'AI · Cybersecurity · Digital Modernization', href: '/IBIZ_Capability_Statement.pdf' },
+  { icon: '📄', title: 'Technology & Consulting', sub: 'AI · Cybersecurity · Digital Modernization', href: '/IBIZ_Digital_Capability_Statement.pdf' },
   { icon: '📦', title: 'Government Supplier', sub: 'Office, Janitorial & Breakroom Supplies', href: 'https://docs.google.com/document/d/1nC_JNSneNYPza-OvdDdkJey4zsV7GWGYDqbypbK2IeQ/export?format=pdf&attachment=true' },
 ]
 
