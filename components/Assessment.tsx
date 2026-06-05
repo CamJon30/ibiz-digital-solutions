@@ -26,8 +26,8 @@ const offers = [
   },
   {
     id: 'ai',
-   // badge: '🔵 Launching Soon — Post-GAIL',
-   // badgeColor: 'blue',
+    badge: '',
+    badgeColor: '',
     label: 'Starter Engagement',
     title: 'AI Readiness Snapshot',
     desc: 'Not sure where AI fits in your operations — or whether your team is ready to adopt it responsibly? The AI Readiness Snapshot gives you a clear-eyed view of your current state in 2 weeks, with a concrete path forward.',
