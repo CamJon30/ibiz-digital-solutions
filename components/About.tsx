@@ -1,12 +1,12 @@
 import styles from './About.module.css'
 
 const certs = [
-  { color: 'green',   status: 'Completed ✓',        label: 'Google Cloud GAIL Certification' },
-  { color: 'gold',   status: 'Coming Q2 2026',     label: 'CompTIA Security+ (SY0-701)' },
-  { color: 'gold',   status: 'Coming Q3 2026',     label: 'CompTIA SecAI+' },
-  { color: 'gold',   status: 'Coming Q3 2026',     label: 'CMMC Registered Practitioner' },
-  { color: 'purple', status: 'Completed ✓',        label: 'Certified Blockchain Expert' },
-  { color: 'purple', status: 'Completed ✓',        label: 'B.S. Computer Engineering, NC A&T' },
+  { color: 'gold',   status: 'Completed ✓',        label: 'Google Cloud GAIL Certification' },
+  { color: 'blue',   status: 'Coming Q2 2026',     label: 'CompTIA SecAI+' },
+  { color: 'purple',   status: 'Coming Q3 2026',     label: 'CompTIA Security+ (SY0-701)' },
+  { color: 'purple',   status: 'Coming Q3 2026',     label: 'CMMC Registered Practitioner' },
+  { color: 'gold', status: 'Completed ✓',        label: 'Certified Blockchain Expert' },
+  { color: 'gold', status: 'Completed ✓',        label: 'B.S. Computer Engineering, NC A&T' },
 ]
 
 const credItems = [
@@ -26,7 +26,7 @@ export default function About() {
           <div className={styles.card}>
             <div className={styles.initials}>CJ</div>
             <div className={styles.name}>Cameron Jones</div>
-            <div className={styles.titleLabel}>Founder, President &amp; CIO · IBIZ Digital Solutions, LLC</div>
+            <div className={styles.titleLabel}>Founder · IBIZ Digital Solutions, LLC</div>
             <div className={styles.divider} />
             <div className={styles.roadmapLabel}>Credential Roadmap</div>
             <div className={styles.certList}>
