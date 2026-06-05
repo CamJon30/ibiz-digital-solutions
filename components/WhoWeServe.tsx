@@ -10,9 +10,11 @@ const clients = [
 const creds = [
   'SAM.gov Registered Small Business (UEI: D3D1NUFGK994)',
   'DoD Mentor-Protégé Program eligible',
-  'Georgia Tech APEX Accelerator participant',
-  'Google Cloud GAIL Certified (2026)',
-  'CompTIA Security+ (in progress)',
+  'Small Disadvantaged Business (SDB)',
+ // 'Georgia Tech APEX Accelerator participant',
+  'Google Cloud GAIL Certified',
+  'CompTIA SecAI+ (In Progress)',
+  'CompTIA Security+ (coming Q3 2026)',
   'CMMC Registered Practitioner (coming Q3 2026)',
 ]
 
