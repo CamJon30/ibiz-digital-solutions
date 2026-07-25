@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import styles from './Nav.module.css'
 
 export default function Nav() {
@@ -13,6 +14,7 @@ export default function Nav() {
         <li><a href="#serve">Who We Serve</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#capability">Contracting</a></li>
+        <li><Link href="/commodities">Commodities</Link></li>
         <li><a href="#blog">Insights</a></li>
         <li><a href="#assessment" className={styles.cta}>Request an Assessment</a></li>
       </ul>
