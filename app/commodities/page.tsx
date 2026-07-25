@@ -1,13 +1,11 @@
 // app/commodities/page.tsx
-// Government Supplier — Commodities subpage for IBIZ Digital Solutions LLC
-// Matches existing site design system: #0a0a0a bg, #111111 cards, #1a1a1a borders, #00c853 accent
-
 import type { Metadata } from "next";
+import styles from "./Commodities.module.css";
 
 export const metadata: Metadata = {
   title: "Government Supplier | IBIZ Digital Solutions LLC",
   description:
-    "IBIZ Digital Solutions LLC — SAM-registered Small Disadvantaged Business supplying office and facility commodities to federal, state, and local government buyers.",
+    "IBIZ Digital Solutions LLC — SAM-registered small business supplying office, janitorial, and breakroom commodities to government agencies.",
 };
 
 type Commodity = {
@@ -70,16 +68,12 @@ const differentiators = [
 
 export default function CommoditiesPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className={styles.main}>
       {/* Header / Capability Statement */}
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-12">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00c853]">
-          Government Supplier
-        </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-          Office, Janitorial &amp; Breakroom Supplies
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-400">
+      <section className={styles.header}>
+        <p className={styles.eyebrow}>Government Supplier</p>
+        <h1 className={styles.title}>Office, Janitorial &amp; Breakroom Supplies</h1>
+        <p className={styles.subtitle}>
           IBIZ Digital Solutions LLC is a small business supplier supporting
           local and state government agencies with reliable sourcing of
           everyday office, janitorial, and breakroom supplies — efficient,
@@ -87,57 +81,40 @@ export default function CommoditiesPage() {
           recurring replenishment.
         </p>
 
-        {/* Capability statement strip */}
-        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-[#1a1a1a] bg-[#1a1a1a] sm:grid-cols-4">
+        <div className={styles.capabilityGrid}>
           {[
             { label: "UEI", value: "D3D1NUFGK994" },
             { label: "CAGE", value: "9YST6" },
             { label: "SAM.gov Status", value: "Active" },
             { label: "Business Type", value: "Small Business" },
           ].map((item) => (
-            <div key={item.label} className="bg-[#111111] p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#00c853]">
-                {item.label}
-              </p>
-              <p className="mt-1 text-sm font-medium text-white">
-                {item.value}
-              </p>
+            <div key={item.label} className={styles.capabilityCell}>
+              <p className={styles.capabilityLabel}>{item.label}</p>
+              <p className={styles.capabilityValue}>{item.value}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Commodities grid */}
-      <section className="mx-auto max-w-5xl px-6 pb-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00c853]">
-          Product Categories
-        </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <section className={styles.section}>
+        <p className={styles.eyebrow}>Product Categories</p>
+        <div className={styles.categoryGrid}>
           {commodities.map((group) => (
-            <div
-              key={group.category}
-              className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-6"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-lg font-semibold text-white">
-                  {group.category}
-                </h2>
+            <div key={group.category} className={styles.card}>
+              <div className={styles.cardHeader}>
+                <h2 className={styles.cardTitle}>{group.category}</h2>
                 {group.primary && (
-                  <span className="flex-none rounded-full border border-[#00c853]/30 bg-[#00c853]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#00c853]">
-                    Primary
-                  </span>
+                  <span className={styles.primaryBadge}>Primary</span>
                 )}
               </div>
-              <div className="mt-2 text-xs text-neutral-500">
-                NAICS <span className="text-neutral-300">{group.naics}</span>
+              <div className={styles.naics}>
+                NAICS <span className={styles.naicsValue}>{group.naics}</span>
               </div>
-              <ul className="mt-4 space-y-2">
+              <ul className={styles.itemList}>
                 {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2 text-sm text-neutral-400"
-                  >
-                    <span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-[#00c853]" />
+                  <li key={item} className={styles.item}>
+                    <span className={styles.dot} />
                     {item}
                   </li>
                 ))}
@@ -148,58 +125,43 @@ export default function CommoditiesPage() {
       </section>
 
       {/* Differentiators */}
-      <section className="mx-auto max-w-5xl px-6 pb-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00c853]">
-          Why IBIZ
-        </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <section className={styles.section}>
+        <p className={styles.eyebrow}>Why IBIZ</p>
+        <div className={styles.diffGrid}>
           {differentiators.map((d) => (
-            <div
-              key={d.title}
-              className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-5"
-            >
-              <h3 className="text-sm font-semibold text-white">{d.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-neutral-400">
-                {d.body}
-              </p>
+            <div key={d.title} className={styles.diffCard}>
+              <h3 className={styles.diffTitle}>{d.title}</h3>
+              <p className={styles.diffBody}>{d.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* RFQ / Contact CTA */}
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-8 sm:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00c853]">
-            Request A Quote
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
+      <section className={styles.section}>
+        <div className={styles.ctaCard}>
+          <p className={styles.eyebrow}>Request A Quote</p>
+          <h2 className={styles.ctaTitle}>
             Sourcing for a contract, task order, or open-market buy?
           </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-400">
+          <p className={styles.ctaBody}>
             Share your requirement — item, quantity, and delivery location —
             and IBIZ will return a quote sourced through our supplier network.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className={styles.ctaRow}>
             <a
               href="mailto:cameron@ibizdigitalsolutions.com?subject=Commodities%20RFQ"
-              className="inline-block rounded-md bg-[#00c853] px-5 py-2.5 text-sm font-semibold text-black transition hover:brightness-110"
+              className={styles.ctaButton}
             >
               Request a quote
             </a>
-            <a
-              href="tel:+19105832746"
-              className="text-sm font-medium text-neutral-400 transition hover:text-white"
-            >
+            <a href="tel:+19105832746" className={styles.ctaPhone}>
               (910) 583-2746
             </a>
           </div>
-          <p className="mt-6 text-xs text-neutral-500">
+          <p className={styles.ctaContact}>
             Cameron Jones · Founder ·{" "}
-            <a
-              href="mailto:cameron@ibizdigitalsolutions.com"
-              className="text-neutral-400 hover:text-white"
-            >
+            <a href="mailto:cameron@ibizdigitalsolutions.com">
               cameron@ibizdigitalsolutions.com
             </a>
           </p>
